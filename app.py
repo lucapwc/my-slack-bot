@@ -12,6 +12,7 @@ load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_APP_TOKEN = os.environ["SLACK_APP_TOKEN"]
 
+print("TEST")
 
 app = App(token=SLACK_BOT_TOKEN)
 
