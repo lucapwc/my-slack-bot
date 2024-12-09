@@ -12,7 +12,9 @@ load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_APP_TOKEN = os.environ["SLACK_APP_TOKEN"]
 
+
 app = App(token=SLACK_BOT_TOKEN)
+
 # client_llama70b = ChatOpenAI(
 #     base_url="https://api.regolo.ai/v1/",
 #     model_name="meta-llama/Meta-Llama-3.1-70B-Instruct",
@@ -26,7 +28,8 @@ scheduler.start()
 # Funzione da schedulare
 def send_scheduled_message():
     try:
-        frase_motivazionale = client_llama70b.invoke("Scrivi una frase motivazionale, da inviare ad un team, per iniziare al meglio la giornata di lavoro").content
+        # frase_motivazionale = client_llama70b.invoke("Scrivi una frase motivazionale, da inviare ad un team, per iniziare al meglio la giornata di lavoro").content
+        frase_motivazionale = "t"
         app.client.chat_postMessage(
             channel="C05USDQ6MSN",
             text=frase_motivazionale
@@ -48,7 +51,8 @@ def mention_handler(body, say):
 @app.message("hello")
 def message_hello(message, say):
     print(message)
-    response_llama70b = client_llama70b.invoke("Raccontami una barzelletta").content
+    # response_llama70b = client_llama70b.invoke("Raccontami una barzelletta").content
+    response_llama70b = "test"
     # say() sends a message to the channel where the event was triggered
     say(f"{response_llama70b} <@{message['user']}>!")
 
