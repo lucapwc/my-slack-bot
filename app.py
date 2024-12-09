@@ -17,6 +17,8 @@ print(SLACK_BOT_TOKEN)
 print(SLACK_APP_TOKEN)
 app = App(token=SLACK_BOT_TOKEN)
 
+print("APP caricata")
+
 # client_llama70b = ChatOpenAI(
 #     base_url="https://api.regolo.ai/v1/",
 #     model_name="meta-llama/Meta-Llama-3.1-70B-Instruct",
@@ -60,4 +62,5 @@ def message_hello(message, say):
 
 if __name__ == "__main__":
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
+    print("HANDLER caricato")
     handler.start()
