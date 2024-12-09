@@ -61,6 +61,7 @@ def message_hello(message, say):
     say(f"{response_llama70b} <@{message['user']}>!")
 
 if __name__ == "__main__":
+    print("HANDLER da caricare")
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     print("HANDLER caricato")
     handler.start()
