@@ -32,8 +32,7 @@ scheduler.start()
 # Funzione da schedulare
 def send_scheduled_message():
     try:
-        # frase_motivazionale = client_llama70b.invoke("Scrivi una frase motivazionale, da inviare ad un team, per iniziare al meglio la giornata di lavoro").content
-        frase_motivazionale = "t"
+        frase_motivazionale = client_llama70b.invoke("Scrivi una frase motivazionale, da inviare ad un team, per iniziare al meglio la giornata di lavoro").content
         app.client.chat_postMessage(
             channel="C05USDQ6MSN",
             text=frase_motivazionale
@@ -43,7 +42,7 @@ def send_scheduled_message():
         print(f"Errore: {e}")
 
 # Schedula il messaggio per un'ora specifica ogni giorno
-scheduler.add_job(send_scheduled_message, 'cron', hour=23, minute=30)
+scheduler.add_job(send_scheduled_message, 'cron', hour=23, minute=40)
 
 
 
@@ -52,10 +51,12 @@ def mention_handler(body, say):
     print(body)
     say("Ciao")
 
-@app.message("hello")
+@app.message("")
 def message_hello(message, say):
     print(message)
-    response_llama70b = client_llama70b.invoke("Raccontami una barzelletta").content
+    if "subtype" in message:
+        return
+    response_llama70b = client_llama70b.invoke(message["text"]).content
     # say() sends a message to the channel where the event was triggered
     say(f"{response_llama70b} <@{message['user']}>!")
 
